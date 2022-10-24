@@ -29,8 +29,8 @@
               Home
             </router-link>
       
-            <router-link class="navbar-item" to="/store">
-              Store
+            <router-link class="navbar-item" to="/products">
+              Products
             </router-link>
       
             <div class="navbar-item has-dropdown is-hoverable">
