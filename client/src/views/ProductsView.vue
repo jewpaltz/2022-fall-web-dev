@@ -7,15 +7,6 @@
 
     const search = ref("");
 
-    const results = ref(products);
-
-    function searchProducts(){
-        results.value = products.filter((product) => {
-            return product.title.toLowerCase().includes(search.value.toLowerCase());
-        });
-    }
-
-    watch(search, searchProducts);
     
 </script>
 
@@ -26,7 +17,9 @@
         </div>
         
         <div class="products">
-            <RouterLink class="product" v-for="product in results" :key="product.id" :to="`/product/${product.id}`">
+            <RouterLink class="product" v-for="product in products" 
+                        :key="product.id" :to="`/product/${product.id}`"
+                        v-show="product.title.toLowerCase().includes(search.toLowerCase())">
                 <div class="product-image">
                     <img :src="product.thumbnail" :alt="product.title" />
                 </div>
