@@ -1,19 +1,28 @@
 <script setup lang="ts">
-    import { computed, reactive, ref } from "vue";
+    import { computed, reactive, ref, watch } from "vue";
     import { RouterLink } from "vue-router";
-    import { getProducts } from "../stores/products";
+    import { getProducts, type Product } from "../stores/products";
 
     const products = reactive(getProducts());
 
     const search = ref("");
 
-    const results = computed(() => products.filter((product) => product.title.toLowerCase().includes(search.value.toLowerCase())));
+    const results = ref(products);
+
+    function searchProducts(){
+        results.value = products.filter((product) => {
+            return product.title.toLowerCase().includes(search.value.toLowerCase());
+        });
+    }
+
+    watch(search, searchProducts);
+    
 </script>
 
 <template>
     <div>
         <div class="control ">
-            <input class="input" type="text" placeholder="Search" v-model="search" />
+            <input class="input" type="text" placeholder="Search" v-model="search"  />
         </div>
         
         <div class="products">
