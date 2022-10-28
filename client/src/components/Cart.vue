@@ -45,7 +45,7 @@ import { computed } from 'vue';
                                 <div class="price">${{ item.product.price }}</div> 
                                 <div>
                                     x 
-                                    <select :value="item.quantity" class="quantity" @input="(e) => updateProductQuantity(item.product.id,  +(<HTMLSelectElement>e.target).value)">
+                                    <select :value="item.quantity" class="quantity" @input="(e) => updateProductQuantity(item.product.id,  +(e.target as HTMLSelectElement).value)">
                                         <option value="0">0 (delete)</option>
                                         <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
                                     </select>
