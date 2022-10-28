@@ -10,8 +10,11 @@ import { ref } from 'vue';
 <template>
     <div class="fly-out" :class="{ 'is-open': isOpen }">
         <div class="fly-out-body">
-            <div class="fly-out-header">
-                <slot name="header" />
+            <div class="hero">
+                <div class="hero-body">
+                    <slot name="header" />
+                </div>
+                
             </div>
             
             <slot />
@@ -32,6 +35,8 @@ import { ref } from 'vue';
         z-index: 100;
 
         transition: right 0.5s ease-in-out;
+        box-shadow: rgb(0 0 0 / 25%) -14px -0 8px;
+        overflow-y: auto;
     }
 
     .fly-out.is-open {
@@ -40,13 +45,17 @@ import { ref } from 'vue';
 
     .fly-out-body {
         height: 100%;
-        background-color: #fff;
-        margin: .5em;
+        background-color: #ffffffaa;
+        margin: 1em;
         padding: 1em;
     }
 
     .fly-out-header {
         padding: 1em;
         background-color: aquamarine;
+    }
+
+    .hero {
+        background-color: #1267a4aa;
     }
 </style>

@@ -30,16 +30,16 @@
                     <p>Your cart is empty</p>
                 </div>
                 <div v-else>
-                    <div v-for="item in cart" :key="item.id">
-                        <div class="columns">
-                            <div class="column is-4">
+                    <div v-for="item in cart" :key="item.id" class="box">
+
+                            <figure class="image is-96x96">
                                 <img :src="item.image" :alt="item.name" />
+                            </figure>
+                            <div class="">
+                                <b>{{ item.name }}</b> 
+                                <div class="price">${{ item.price }}</div> 
+                                
                             </div>
-                            <div class="column is-8">
-                                <p>{{ item.name }}</p>
-                                <p>{{ item.price }}</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -52,5 +52,14 @@
 
 
 <style scoped>
-
+    .box {
+        text-align: center;
+    }
+    .image {            /* note that this is the image class not the image tag */
+        border: 1px solid #000;
+        margin: auto;
+    }
+    .price {
+        font-size: 1.5em;
+    }
 </style>
