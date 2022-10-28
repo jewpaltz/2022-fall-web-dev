@@ -20,10 +20,10 @@ export function addProductToCart(product: Product, quantity: number = 1) {
     }
 }
 
-export function removeProductFromCart(id: number, quantity: number = 1) {
+export function updateProductQuantity(id: number, quantity: number) {
     const cartItem = cart.find((item) => item.product.id === id);
     if (cartItem) {
-        cartItem.quantity -= quantity;
+        cartItem.quantity = quantity;
         if (cartItem.quantity <= 0) {
             cart.splice(cart.indexOf(cartItem), 1);
         }
