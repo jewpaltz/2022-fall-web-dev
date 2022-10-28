@@ -1,5 +1,6 @@
 <script setup lang="ts">
-    import { computed, reactive, ref, watch } from "vue";
+    import { addProductToCart } from "@/stores/cart";
+import { computed, reactive, ref, watch } from "vue";
     import { RouterLink } from "vue-router";
     import { getProducts, type Product } from "../stores/products";
 
@@ -7,7 +8,9 @@
 
     const search = ref("");
 
-    
+    function addToCart(product: Product) {
+        addProductToCart(product);
+    }
 </script>
 
 <template>
@@ -26,6 +29,7 @@
                 <div class="product-info">
                     <b>{{ product.title }}</b>
                     <p>{{ product.description }}</p>
+                    <button class="button is-small is-primary is-rounded add" @click.prevent="addToCart(product)">+</button>
                     <p class="price">
                         <span class="currency">$</span>
                         <span class="amount">{{ product.price }}</span>
@@ -41,6 +45,10 @@
         display: flex;
         flex-wrap: wrap;
         background-color: aliceblue;
+    }
+
+    .add {
+        float: right;
     }
 
     .product {
