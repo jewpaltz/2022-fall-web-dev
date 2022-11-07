@@ -6,10 +6,13 @@
   "license": "ISC",
 
   "scripts": {
-    "build": "cd client && npm run build",
+    "build": "npm i -ws && npm run build -ws",
     "dev": "nodemon --watch server server/index.js",
     "start": "node server/index.js"
   },
+  "workspaces": [
+    "client"
+  ],
   "dependencies": {
     "express": "^4.18.1"
   },
