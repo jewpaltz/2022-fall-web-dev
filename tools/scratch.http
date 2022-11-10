@@ -3,3 +3,12 @@ http://127.0.0.1:3000/api/v1/products/
 
 ###
 http://127.0.0.1:3000/api/v1/products/6
+
+###
+http://127.0.0.1:3000/api/v1/cart/mp@np.edu
+
+###
+POST http://127.0.0.1:3000/api/v1/cart/mp@np.edu/9/1
+
+###
+DELETE http://127.0.0.1:3000/api/v1/cart/mp@np.edu/6
