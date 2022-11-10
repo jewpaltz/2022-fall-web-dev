@@ -1,7 +1,7 @@
 const data = require('../data/products.json');
 
 function getProducts() {
-    return data.products;
+    return data;
 }
 
 function getProduct(id) {

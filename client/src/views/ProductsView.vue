@@ -8,7 +8,7 @@ import { computed, reactive, ref, watch } from "vue";
     // getProducts().then( x=> products.value = x);
 
     const products = reactive([] as Product[]);
-    getProducts().then( x=> products.push(...x));
+    getProducts().then( x=> products.push(...x.products));
     
 
     const search = ref("");
