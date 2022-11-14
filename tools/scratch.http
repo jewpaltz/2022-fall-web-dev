@@ -5,10 +5,10 @@ http://127.0.0.1:3000/api/v1/products/
 http://127.0.0.1:3000/api/v1/products/6
 
 ###
-http://127.0.0.1:3000/api/v1/cart/mp@np.edu
+http://127.0.0.1:3000/api/v1/cart/mp@np
 
 ###
-POST http://127.0.0.1:3000/api/v1/cart/mp@np.edu/9/1
+POST http://127.0.0.1:3000/api/v1/cart/mp@np/9/1
 
 ###
 PATCH http://127.0.0.1:3000/api/v1/cart/mp@np.edu/6/5

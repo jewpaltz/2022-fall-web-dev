@@ -1,9 +1,14 @@
-
+const { getProduct } = require('./products');
 // CartItem: { id: 1, quantity: 2, productId: 1, userId: 'mp@np.edu' }
 const list = [];
 
 const get = (userId) => {
-    return list.filter((cartItem) => cartItem.userId === userId);
+    return list
+        .filter((cartItem) => cartItem.userId === userId)
+        .map((cartItem) => ({
+            ...cartItem, 
+            product: getProduct(cartItem.productId)
+        }));
 };
 
 /**
@@ -21,7 +26,7 @@ const add = (userId, productId, quantity) => {
         cartItem = { id: list.length + 1, quantity, productId, userId };
         list.push(cartItem);
     }
-    return cartItem;
+    return { ...cartItem, product: getProduct(productId) };
 };
 
 

@@ -1,5 +1,7 @@
-import { reactive } from "vue";
+import myFetch from "@/services/myFetch";
+import { reactive, watch } from "vue";
 import type {  Product } from "./products";
+import session from "./session";
 
 export interface CartItem {
     quantity: number;
@@ -8,26 +10,21 @@ export interface CartItem {
 
 const cart = reactive([] as CartItem[]);
 
-export function addProductToCart(product: Product, quantity: number = 1) {
-    const cartItem = cart.find((item) => item.product.id === product.id);
-    if (cartItem) {
-        cartItem.quantity += quantity;
-    } else {
-        cart.push({
-            quantity,
-            product,
-        });
-    }
+export function load() {
+    myFetch(`cart/${session.user?.email}`).then((data) => {
+        cart.splice(0, cart.length, ...data as CartItem[]);
+    });
 }
+watch(()=> session.user, load);
+
+export function addProductToCart(product: Product, quantity: number = 1) {
+    myFetch(`cart/${session.user?.email}/${product.id}/${quantity}`).then((data) => {
+        cart.unshift(data as CartItem);
+    });}
 
 export function updateProductQuantity(id: number, quantity: number) {
-    const cartItem = cart.find((item) => item.product.id === id);
-    if (cartItem) {
-        cartItem.quantity = quantity;
-        if (cartItem.quantity <= 0) {
-            cart.splice(cart.indexOf(cartItem), 1);
-        }
-    }
-}
+    myFetch(`cart/${session.user?.email}`).then((data) => {
+        cart.splice(0, cart.length, ...data as CartItem[]);
+    });}
 
 export default cart;
