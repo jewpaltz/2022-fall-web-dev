@@ -11,4 +11,4 @@ http://127.0.0.1:3000/api/v1/cart/mp@np.edu
 POST http://127.0.0.1:3000/api/v1/cart/mp@np.edu/9/1
 
 ###
-DELETE http://127.0.0.1:3000/api/v1/cart/mp@np.edu/6
+PATCH http://127.0.0.1:3000/api/v1/cart/mp@np.edu/6/5
