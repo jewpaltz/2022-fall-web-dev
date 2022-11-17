@@ -17,6 +17,8 @@ app.use((req, res, next) => {
 
 app.use('/', express.static('./client/dist'));
 
+app.use(express.json());
+
 app
 .get('/', (req, res) => {
     res.status(200).send('Happy Sweet New Year');
