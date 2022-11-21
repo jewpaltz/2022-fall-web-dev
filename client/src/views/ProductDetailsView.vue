@@ -1,4 +1,5 @@
 <script setup lang="ts">
+    import { isLoading } from "@/stores/session";
     import { ref } from "vue";
     import { useRoute } from "vue-router";
 
@@ -31,6 +32,9 @@
             <p>{{ product.description }}</p>
 
         </div>
+    </div>
+    <div v-else-if="isLoading">
+        <img src="@/assets/placeholder-loading-demo-1.gif" style="width: 100%" />
     </div>
     <div v-else class="section">
         <h2 class="title">Product not found</h2>

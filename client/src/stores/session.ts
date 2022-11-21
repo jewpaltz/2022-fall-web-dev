@@ -28,7 +28,7 @@ export async function api<T>(url: string, data: any = null, method?: string ){
     }finally{
         session.loading--;
     }
-    
+    return {} as T;
 }
 
 
