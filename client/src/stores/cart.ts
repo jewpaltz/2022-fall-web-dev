@@ -23,8 +23,10 @@ export function addProductToCart(product: Product, quantity: number = 1) {
         const i = cart.findIndex((x) => x.product.id === product.id);
         if (i != -1) {
             cart[i] = data as CartItem;
+            session.messages.push({ type: 'success', text: `Updated ${product.title} in cart to ${cart[i].quantity}`});
         } else {
             cart.unshift(data as CartItem);
+            session.messages.push({ type: 'success', text: `Added ${product.title} to cart`});
         }
     });
 }

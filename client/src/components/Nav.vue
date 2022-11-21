@@ -3,6 +3,7 @@
     import { RouterLink } from 'vue-router';
     import Cart from './Cart.vue';
     import LoginBadge from './LoginBadge.vue';
+import MessageList from './MessageList.vue';
 
     const isActive = ref(false);
     const isCartOpen = ref(false);
@@ -73,7 +74,7 @@
         </div>
         </div>
       </nav>
-
+      <MessageList />
 </template>
 
 <style>
