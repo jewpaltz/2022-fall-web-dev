@@ -10,7 +10,7 @@
 <template>
     <div class="navbar-item has-dropdown is-hoverable">
         <a class="navbar-link" >
-            <span class="icon">
+            <span class="icon" :class="{ loader: isLoading }">
                 <i class="fas fa-bell"></i>
             </span>
             <span class="tag is-danger" v-if="session.messages.length">
@@ -35,11 +35,14 @@
 
 
 <style scoped>
+    .icon {
+        font-size: 1.5em;
+    }
     .navbar-dropdown {
         width: max-content;
         max-width: 300px;
     }
-    .notification {
+    .navbar-item.has-dropdown .notification { /* made this more specific. So that it has a stronger effect */
         margin: .5rem;
         width: calc(100% - 1rem);
     }
