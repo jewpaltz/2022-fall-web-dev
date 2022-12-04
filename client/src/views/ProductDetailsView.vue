@@ -9,7 +9,7 @@
     
     const product = ref(null as Product | null);
 
-    getProduct(route.params.id).then(x => {
+    getProduct(route.params.id as string).then(x => {
         product.value = x
         console.log('The fetch returned');
     });
