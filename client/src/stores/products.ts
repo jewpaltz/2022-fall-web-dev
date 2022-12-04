@@ -6,7 +6,7 @@ export function getProducts() {
   return api<ListEnvelope<Product>>('products');
 }
 
-export function getProduct(id: number) {
+export function getProduct(id: string) {
   return api<Product>(`products/${id}`)
 }
 
