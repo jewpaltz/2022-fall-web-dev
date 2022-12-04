@@ -22,6 +22,27 @@ async function getProduct(id) {
 }
 
 
+async function addProduct(product){
+    const db = await collection();
+    const result = await db.insertOne(product)
+    return product;
+}
+
+async function updateProduct(id, product){
+    const db = await collection();
+    const result = await db.findOneAndUpdate(
+        { _id: new ObjectId(id) },
+        { $set: product },
+        { returnDocument: 'after' })
+    return result.value;
+}
+
+async function deleteProduct(id){
+    const db = await collection();
+    const result = await db.deleteOne({ _id: new ObjectId(id) })
+    return result;
+}
+
 async function seed(){
     const db = await collection();
     db.insertMany(data.products);
@@ -33,5 +54,8 @@ module.exports = {
     collection,
     getProducts,
     getProduct,
+    addProduct,
+    updateProduct,
+    deleteProduct,
     seed,
 };

@@ -5,13 +5,51 @@ http://127.0.0.1:3003/api/v1/products/
 POST http://127.0.0.1:3003/api/v1/products/seed
 
 ###
-http://127.0.0.1:3000/api/v1/products/6
+http://127.0.0.1:3003/api/v1/products/6
 
 ###
-http://127.0.0.1:3000/api/v1/cart/mp@np
+POST http://127.0.0.1:3003/api/v1/products
+Content-Type: application/json
+
+{
+      "id": 613,
+      "title": "Menorah",
+      "description": "9 Branched Candelaberah for Chanukah",
+      "price": 30,
+      "discountPercentage": 2.92,
+      "rating": 4.92,
+      "stock": 54,
+      "brand": "JewPaltz",
+      "category": "holiday-decoration",
+      "thumbnail": "https://dummyjson.com/image/i/products/30/thumbnail.jpg",
+      "images": [
+        "https://dummyjson.com/image/i/products/30/1.jpg",
+        "https://dummyjson.com/image/i/products/30/2.jpg",
+        "https://dummyjson.com/image/i/products/30/3.jpg",
+        "https://dummyjson.com/image/i/products/30/thumbnail.jpg"
+      ]
+}
 
 ###
-POST http://127.0.0.1:3000/api/v1/cart/mp@np
+PATCH http://127.0.0.1:3003/api/v1/products/638d2dc25faba5c868e3498b
+Content-Type: application/json
+
+{
+      "id": 614,
+      "title": "Golden Menorah",
+      "description": "9 Branched source of light for Chanukah",
+      "price": 33.5
+}
+
+###
+DELETE http://127.0.0.1:3003/api/v1/products/638d2d83d00fb78297bac608
+
+
+###
+http://127.0.0.1:3003/api/v1/cart/mp@np
+
+###
+POST http://127.0.0.1:3003/api/v1/cart/mp@np
 Content-Type: application/json
 
 {
@@ -19,4 +57,4 @@ Content-Type: application/json
     "productId": 9
 }
 ###
-PATCH http://127.0.0.1:3000/api/v1/cart/mp@np.edu/6/5
+PATCH http://127.0.0.1:3003/api/v1/cart/mp@np.edu/6/5

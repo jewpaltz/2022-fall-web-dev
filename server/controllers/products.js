@@ -22,6 +22,21 @@ app
         .catch(next);
         
     })
+    .post('/', (req, res, next) => {
+        products.addProduct(req.body)
+        .then(x=> res.status(200).send(x))
+        .catch(next);
+    })
+    .patch('/:id', (req, res, next) => {
+        products.updateProduct(req.params.id, req.body)
+        .then(x=> res.status(200).send(x))
+        .catch(next);
+    })
+    .delete('/:id', (req, res, next) => {
+        products.deleteProduct(req.params.id)
+        .then(x=> res.status(200).send(x))
+        .catch(next);
+    })
     .post('/seed', (req, res, next) => {
         products.seed()
         .then(x=> res.status(200).send(x))
