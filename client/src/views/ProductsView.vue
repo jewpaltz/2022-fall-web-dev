@@ -26,9 +26,9 @@
         </div>
         
         <div class="products">
-            <RouterLink v-for="product in products" :key="product.id" 
+            <RouterLink v-for="product in products" :key="product._id" 
                         class="product" :class="{ 'is-disabled': isLoading }"
-                        :to="`/product/${product.id}`"
+                        :to="`/product/${product._id}`"
                         v-show="product.title.toLowerCase().includes(search.toLowerCase())">
                 <div class="product-image">
                     <img :src="product.thumbnail" :alt="product.title" />

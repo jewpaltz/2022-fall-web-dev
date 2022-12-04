@@ -2,6 +2,9 @@
 http://127.0.0.1:3003/api/v1/products/
 
 ###
+POST http://127.0.0.1:3003/api/v1/products/seed
+
+###
 http://127.0.0.1:3000/api/v1/products/6
 
 ###
