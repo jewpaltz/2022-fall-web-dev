@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import session, { api, isLoading, setError } from "@/stores/session";
-    import { ref } from "vue";
+    import { ref, watch } from "vue";
     import { useRoute, useRouter } from "vue-router";
 
     import { addProduct, getProduct, updateProduct, type Product } from "@/stores/products";
@@ -45,6 +45,22 @@
    async function cancel() {
     await router.push({ name: 'admin_products' });    
    } 
+
+
+   const isTenorSearchOpen = ref(false);
+   const tenorSearch = ref('');
+   const tenorResults = ref([] as any[]);
+
+
+   watch(tenorSearch, async () => {
+       if(tenorSearch.value.length > 2){
+        const data = await fetch(`https://tenor.googleapis.com/v2/search?q=${tenorSearch.value}&key=${import.meta.env.VITE_TENOR_API_KEY}&limit=8`)
+                            .then(x=> x.json())
+        console.log({ data });
+        tenorResults.value = data.results;
+       }
+    });
+
 </script>
 
 <template>
@@ -137,12 +153,26 @@
                             <label class="label">Thumbnail</label>
                         </div>
                         <div class="field-body">
-                            <div class="field">
-                                <div class="control">
+                            <div class="field  has-addons">
+                                <div class="control is-expanded">
                                     <input class="input" type="text" placeholder="Complete URL" v-model="product.thumbnail">
                                 </div>
+                                <p class="control">
+                                        <a class="button is-warning" @click.prevent="(isTenorSearchOpen = !isTenorSearchOpen)">
+                                            Find a Gif
+                                        </a>
+                                    </p>
 
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="box" v-show="isTenorSearchOpen">
+                        <h3>Tenor Search</h3>
+                        <input class="input" type="text" placeholder="Complete URL" v-model="tenorSearch" />
+
+                        <div class="image tenor-gif" v-for="tenorGif in tenorResults" :key="tenorGif.id" @click.prevent="product.thumbnail = tenorGif.media_formats.mediumgif.url" >
+                            <img :src="tenorGif.media_formats.tinygif.url" />
                         </div>
                     </div>
                     
@@ -190,5 +220,11 @@
 <style scoped>
     .modal-card {
         width: 100%;
+    }
+
+    .tenor-gif {
+        display: inline-block;
+        margin: 0 10px 10px 0;
+        max-width: 220px;
     }
 </style>
