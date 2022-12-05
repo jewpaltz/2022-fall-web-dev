@@ -2,6 +2,12 @@
 http://127.0.0.1:3003/api/v1/products/
 
 ###
+http://127.0.0.1:3003/api/v1/products/brands
+
+###
+http://127.0.0.1:3003/api/v1/products/categories
+
+###
 POST http://127.0.0.1:3003/api/v1/products/seed
 
 ###

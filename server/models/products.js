@@ -15,6 +15,18 @@ async function getProducts() {
     return { total: data.length, limit: data.length, products: data };
 }
 
+async function getBrands() {
+    const db = await collection();
+    const data = await db.distinct('brand')
+    return data;
+}
+
+async function getCategories() {
+    const db = await collection();
+    const data = await db.distinct('category')
+    return data;
+}
+
 async function getProduct(id) {
     const db = await collection();
     const data = await db.findOne({ _id: new ObjectId(id) })
@@ -54,6 +66,8 @@ module.exports = {
     COLLECTION_NAME,
     collection,
     getProducts,
+    getBrands,
+    getCategories,
     getProduct,
     addProduct,
     updateProduct,
