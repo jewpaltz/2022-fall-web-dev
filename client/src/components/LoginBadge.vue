@@ -13,7 +13,7 @@
             });
             const user = await data.json();
             console.log({ user });
-            
+            session.user = user;
           },
         });
         auth_client.requestAccessToken();
@@ -32,8 +32,12 @@
             Log in
         </RouterLink>
     </div>
-    <div v-else>
-        Welcome {{session.user.name}} ({{session.user.email}})
+    <div v-else class="profile">
+        <img :src="session.user.picture" />
+        <span>
+            {{session.user.name}} ({{session.user.email}})            
+        </span>
+
         (<a @click="logout()">
             Log out
         </a>)
@@ -43,5 +47,14 @@
 
 
 <style scoped>
+    .profile {
+        display: flex;
+        align-items: center
+    }
+    .profile img {
 
+        border-radius: 50%;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
 </style>

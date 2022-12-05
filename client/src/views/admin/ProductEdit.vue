@@ -170,10 +170,13 @@
                     <div class="box" v-show="isTenorSearchOpen">
                         <h3>Tenor Search</h3>
                         <input class="input" type="text" placeholder="Complete URL" v-model="tenorSearch" />
-
-                        <div class="image tenor-gif" v-for="tenorGif in tenorResults" :key="tenorGif.id" @click.prevent="product.thumbnail = tenorGif.media_formats.mediumgif.url" >
-                            <img :src="tenorGif.media_formats.tinygif.url" />
+                        <div class="tenor-results">
+                            <div    class="image tenor-gif" v-for="tenorGif in tenorResults" :key="tenorGif.id" 
+                                    @click.prevent="product.thumbnail = tenorGif.media_formats.mediumgif.url; isTenorSearchOpen = false" >
+                                <img :src="tenorGif.media_formats.tinygif.url" />
+                            </div>                            
                         </div>
+
                     </div>
                     
                     <div class="field is-horizontal">
@@ -221,10 +224,23 @@
     .modal-card {
         width: 100%;
     }
-
+    
+    .tenor-results {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
     .tenor-gif {
-        display: inline-block;
-        margin: 0 10px 10px 0;
+        display: flex;
+        align-items: center;
+        border: 1px solid blueviolet;
+        margin: 10px;
+        padding: 5px;
+        border-radius: 10px;
         max-width: 220px;
+        cursor: pointer;
+    }
+    .tenor-gif:hover {
+        border: 3px solid green;
     }
 </style>
