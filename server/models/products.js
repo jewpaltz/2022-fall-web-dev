@@ -30,6 +30,7 @@ async function addProduct(product){
 
 async function updateProduct(id, product){
     const db = await collection();
+    delete product._id; // You can not change the _id. So it can not be part of the changes that you send to the database.
     const result = await db.findOneAndUpdate(
         { _id: new ObjectId(id) },
         { $set: product },
