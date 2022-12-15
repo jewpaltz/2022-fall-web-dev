@@ -15,6 +15,12 @@ async function getProducts() {
     return { total: data.length, limit: data.length, products: data };
 }
 
+async function searchProducts(q) {
+    const db = await collection();
+    const data = await db.find({ title: {$regex: q, $options: 'i'} }).toArray()
+    return { total: data.length, limit: data.length, products: data };
+}
+
 async function getBrands() {
     const db = await collection();
     const data = await db.distinct('brand')
@@ -73,4 +79,5 @@ module.exports = {
     updateProduct,
     deleteProduct,
     seed,
+    searchProducts,
 };

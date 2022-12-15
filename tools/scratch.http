@@ -2,6 +2,9 @@
 http://127.0.0.1:3003/api/v1/products/
 
 ###
+http://127.0.0.1:3003/api/v1/products/search/lap
+
+###
 http://127.0.0.1:3003/api/v1/products/brands
 
 ###

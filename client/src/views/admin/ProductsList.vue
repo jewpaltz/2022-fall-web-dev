@@ -1,8 +1,10 @@
 <script setup lang="ts">
     import { computed, reactive, ref, watch } from "vue";
     import { RouterLink } from "vue-router";
-    import { deleteProduct, getProducts, type Product } from "@/stores/products";
-    import session, { setError } from "@/stores/session";
+    import { deleteProduct, getProducts, type ListEnvelope, type Product } from "@/stores/products";
+    import session, { api, setError } from "@/stores/session";
+
+    import vSelect from 'vue-select'
 
     const products = ref([] as Product[]);
     getProducts().then( x=> products.value = x.products);
@@ -19,9 +21,20 @@
         }
     }
 
+    const options = ref([] as any[]);
+    async function fetchOptions (search: string) {
+        const result = await api<ListEnvelope<Product>>(`products/search/${search}`)
+        options.value = result.products;
+    }
 </script>
 
 <template>
+    <section>
+        <v-select :options="options" @search="fetchOptions" label="title" placeholder="Search for a product">
+
+        </v-select>
+    </section>
+
     <section>
         <RouterLink class="button is-success"  :to="`./product/new`" style="float: right">
             <span class="icon is-small">

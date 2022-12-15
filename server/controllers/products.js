@@ -9,6 +9,11 @@ app
         .then(x=> res.status(200).send(x))
         .catch(next);
     })
+    .get('/search/:q', (req, res, next) => {
+        products.searchProducts(req.params.q)
+        .then(x=> res.status(200).send(x))
+        .catch(next);
+    })
     .get('/brands', (req, res, next) => {
         products.getBrands()
         .then(x=> res.status(200).send(x))
